@@ -62,12 +62,14 @@ module.exports = context => {
       }
 
       xcodeProject = xcode.project(iosProject.locations.pbxproj);
+      
+      projectName = path.basename(iosProject.locations.xcodeCordovaProj);
+      projectPath = path.join(platformPath, projectName);
       pluginsPath = path.join(projectPath, 'Plugins');
 
       xcodeProject.parseSync();
       
-      projectName = path.basename(iosProject.locations.xcodeCordovaProj);
-      projectPath = path.join(platformPath, projectName);
+
       pbxprojPath = path.join(platformPath, projectName + '.xcodeproj', 'project.pbxproj');
 
       bridgingHeaderPath = getBridgingHeaderPath(projectPath, iosPlatformVersion);
